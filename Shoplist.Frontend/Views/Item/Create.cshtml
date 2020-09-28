@@ -1,0 +1,10 @@
+﻿@model Shoplist.Infrastructure.DTO.ItemDto
+<form class="form-inline m-5" id="SubmitItemForm" asp-action="Create" asp-controller="Item">
+    <div class="input-group">
+        @Html.ValidationSummary()
+        @Html.HiddenFor(x => x.GroceryListId)
+        <input type="text" asp-for="Name" placeholder="Rice, Potatoes..." class="form-control" />
+        <button id="SubmitButton" type="submit" class="btn btn-primary mb-2">Add</button>
+    </div>
+</form>
+

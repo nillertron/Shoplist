@@ -1,0 +1,10 @@
+﻿@model GroceryListViewModel
+<div class="col-12">
+    <form class="form-inline m-5" asp-action="Search" method="get">
+        @Html.ValidationSummary()
+        <div class="input-group">
+            <input name="id" class="form-control" type="text" placeholder="Enter Id" asp-for="Id" />
+            <button class="btn btn-primary mb-2" type="submit">Search</button>
+        </div>
+    </form>
+</div>

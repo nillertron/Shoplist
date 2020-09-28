@@ -1,0 +1,44 @@
+﻿@model Shoplist.Infrastructure.DTO.GroceryListDto
+@{ var itemModel = new Shoplist.Infrastructure.DTO.ItemDto { GroceryListId = Model.Id }; }
+@await Html.PartialAsync("../Item/Create",itemModel)
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <td>Item</td>
+            <td style="width:20px"></td>
+        </tr>
+    </thead>
+    <tbody>
+        
+            @foreach (var i in Model.Items)
+            {
+                <tr>
+                    <td><p>@i.Name</p></td>
+                    <td><a id="@i.Id" style="cursor:pointer" onclick="DeleteItemAjax(this)">&Chi;</a></td>
+                </tr>
+                
+            }
+
+        
+    </tbody>
+</table>
+<script>
+    function DeleteItemAjax(item) {
+        console.log(item);
+        var itemId = item.id;
+        $.ajax({
+            method: 'delete',
+            url: '../Item/Delete?id=' + itemId,
+            data: itemId,
+            success: function () {
+                window.location.reload();
+            },
+            error: function (xhr, msg, code) {
+                var div = document.createElement('div');
+                div.innerHTML = msg;
+                document.body.appendChild(div);
+            }
+            
+        });
+    }
+</script>
